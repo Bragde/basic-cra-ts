@@ -5,6 +5,11 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+    const onClickHandler = () => {
+        const test = 'Hello World';
+        alert(test);
+    };
+
     return (
         <div className="App">
             <header className="App-header">
@@ -15,6 +20,7 @@ function App() {
                 <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
                     Learn React
                 </a>
+                <button onClick={onClickHandler}>Click me</button>
             </header>
         </div>
     );
