@@ -1,27 +1,15 @@
 import React from 'react';
-
 import logo from './logo.svg';
-
 import './App.css';
+import { UserList } from './components/UserList';
 
 function App() {
-    const onClickHandler = () => {
-        const test = 'Hello World';
-        alert(test);
-    };
-
     return (
         <div className="App">
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-                    Learn React
-                </a>
-                <button onClick={onClickHandler}>Click me</button>
             </header>
+            <UserList />
         </div>
     );
 }
