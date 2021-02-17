@@ -3,10 +3,10 @@ import { render, screen } from '@testing-library/react';
 import App from '../App';
 import ReactDOM from 'react-dom';
 
-test('renders learn react link', () => {
+test('renders Get list of all users text', () => {
     render(<App />);
-    const linkElement = screen.getByText(/learn react/i);
-    expect(linkElement).toBeInTheDocument();
+    const text = screen.getByText('Get list of all users');
+    expect(text).toBeInTheDocument();
 });
 
 it('renders without crashing', () => {

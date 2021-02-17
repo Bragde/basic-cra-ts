@@ -1,8 +1,6 @@
-import { getUsers } from '../api/user';
+import { getAllUsers, getUserById, createUser, updateUser, deleteUser } from '../api/user';
 
-// beforeAll(() => {
-//     require('whatwg-fetch');
-// });
+// WRITE UNIT TESTS FOR API HERE (COMMING SOON TO A APPLICATION NEAR YOU)
 
 describe('Users API', () => {
     test('it returns an array of users', async () => {
@@ -16,7 +14,7 @@ describe('Users API', () => {
             return Promise.resolve(fetchResponse);
         });
 
-        const json = await getUsers();
+        const json = await getAllUsers();
 
         expect(json).toMatchObject(expected);
 

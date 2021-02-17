@@ -1,58 +1,41 @@
 import { rest } from 'msw';
-import { URL_USERS } from '../constants/constants';
-import { IUsers } from '../interface/interface';
+import { URL_USERS } from '../api/user';
+import { mockUsers } from './data';
 
+// Create in memory mock database
+let users = mockUsers();
+
+// Handle api requests and mock responses
 export const handlers = [
-    // GET user by id
+    // Get user by id
     rest.get(`${URL_USERS}/:id`, (req, res, ctx) => {
         const { id } = req.params;
-        return res(
-            ctx.json({
-                id: id,
-                firstName: 'John',
-                lastName: 'Maverick',
-            }),
-        );
+        return res(ctx.json(users.find((x) => x.id === id)));
     }),
 
-    // GET all users
+    // Get all users
     rest.get(`${URL_USERS}`, (req, res, ctx) => {
         return res(ctx.json(users));
     }),
 
-    rest.post('/login', (req, res, ctx) => {
-        // Persist user's authentication in the session
-        sessionStorage.setItem('is-authenticated', true);
-        return res(
-            // Respond with a 200 status code
-            ctx.status(200),
-        );
+    // Create new user
+    rest.post(`${URL_USERS}`, (req, res, ctx) => {
+        const { id } = req.body.id;
+        users.push(req.body);
+        return res(ctx.json({ returnUrl: `${URL_USERS}/${id}` }));
     }),
 
-    rest.get('/user', (req, res, ctx) => {
-        // Check if the user is authenticated in this session
-        const isAuthenticated = sessionStorage.getItem('is-authenticated');
-        if (!isAuthenticated) {
-            // If not authenticated, respond with a 403 error
-            return res(
-                ctx.status(403),
-                ctx.json({
-                    errorMessage: 'Not authorized',
-                }),
-            );
-        }
-        // If authenticated, return a mocked user details
-        return res(
-            ctx.status(200),
-            ctx.json({
-                username: 'admin',
-            }),
-        );
+    // Update user
+    rest.put(`${URL_USERS}/:id`, (req, res, ctx) => {
+        const { id } = req.params;
+        users = users.map((x) => (x.id === id ? req.body : x));
+        return res(ctx.json({ returnUrl: `${URL_USERS}/${id}` }));
     }),
-];
 
-// MOCK DATA
-let users = [
-    { id: '1', name: 'Anna' },
-    { id: '2', name: 'Bosse' },
+    // Delete user
+    rest.delete(`${URL_USERS}/:id`, (req, res, ctx) => {
+        const { id } = req.params;
+        users = users.filter((x) => x.id !== id);
+        return res(ctx.json({}));
+    }),
 ];
