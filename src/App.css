@@ -24,8 +24,27 @@
   color: white;
 }
 
+.App-navbar li {
+  display: inline;
+  margin: 1em;
+}
+
+.activeNavLink {
+  font-weight: bold;
+}
+
+.Topics-list li {
+  list-style-type: none;
+}
+
 .App-link {
   color: #61dafb;
+}
+
+.Users-table {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
 }
 
 @keyframes App-logo-spin {
