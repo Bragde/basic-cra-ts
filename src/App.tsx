@@ -9,6 +9,7 @@ import { Switch, Route } from 'react-router-dom';
 import { PageNotFound } from './components/PageNotFound';
 import { NavBar } from './components/NavBar';
 import { Props } from './components/Props';
+import { Login } from './components/Login';
 
 function App() {
     return (
@@ -28,6 +29,7 @@ function App() {
                         return <Props text="This text is passed as a property when routing to this component" />;
                     }}
                 />
+                <Route path="/login" component={Login} />
                 <Route component={PageNotFound} />
             </Switch>
         </div>

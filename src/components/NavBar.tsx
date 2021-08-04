@@ -30,6 +30,11 @@ export const NavBar = () => {
                         Props
                     </NavLink>
                 </li>
+                <li>
+                    <NavLink to="/login" activeClassName="activeNavLink">
+                        Log In
+                    </NavLink>
+                </li>
             </ul>
         </nav>
     );
